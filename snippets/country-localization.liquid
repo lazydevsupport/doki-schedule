@@ -26,7 +26,7 @@
 %}
 
 <div class="disclosure">
-  <button
+  {% comment %} <button
     type="button"
     class="disclosure__button localization-form__select localization-selector link link--text caption-large"
     aria-expanded="false"
@@ -39,7 +39,7 @@
       {{ localization.country.currency.symbol -}}
     </span>
     {% render 'icon-caret' %}
-  </button>
+  </button> {% endcomment %}
   <div class="disclosure__list-wrapper country-selector" hidden>
     <div class="country-filter{% unless show_country_filter %} country-filter--no-padding{% endunless %}">
       {% if show_country_filter %}

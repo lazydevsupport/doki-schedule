@@ -6,7 +6,7 @@
 {%- endcomment -%}
 
 <div class="disclosure">
-  <button
+  {% comment %} <button
     type="button"
     class="disclosure__button localization-form__select localization-selector link link--text caption-large"
     aria-expanded="false"
@@ -15,7 +15,7 @@
   >
     <span>{{ localization.language.endonym_name | capitalize }}</span>
     {% render 'icon-caret' %}
-  </button>
+  </button> {% endcomment %}
   <div class="disclosure__list-wrapper" hidden>
     <ul id="{{ localPosition }}List" role="list" class="disclosure__list list-unstyled">
       {%- for language in localization.available_languages -%}
