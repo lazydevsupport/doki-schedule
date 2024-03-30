@@ -1,0 +1,329 @@
+{% assign settings = section.settings %}
+
+<style>
+
+  :root {
+    --c-yellow: #fbde76;
+    --c-dark-text: #17113F;
+  }
+
+  .schedule-wrapper {
+    position: relative;
+    width: 1300px;
+    height: 1300px;
+    outline: 1px solid red;
+    margin: 0 auto;
+  }
+
+  .schedule__logo {
+    position: absolute;
+    top: 0;
+    left: 5px; 
+  }
+
+  {% comment %} Schedule Title {% endcomment %}
+
+  .schedule__title {
+    padding: 120px 0 0 200px;
+    color: #fff;
+  }
+
+  .schedule__title p {
+    font-size: 37px;
+  }
+
+  .has-double-stroke {
+    position: relative;
+    z-index: 0;
+  }
+
+  .has-double-stroke:before {
+    content: attr(title);
+    position: absolute;
+    -webkit-text-stroke: 8px #232560;
+    left: 0;
+    z-index: -1;
+  }
+
+  .has-double-stroke:after {
+    content: attr(title);
+    position: absolute;
+    -webkit-text-stroke: 10px #9cb7fa;
+    left: 0;
+    z-index: -2;
+  }
+
+  {% comment %} Socials {% endcomment %}
+
+  .schedule-socials {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: 0;
+    top: 35px;
+    width: 195px;
+    height: 64px;
+    background: #0e0f3f;
+    border: 2px solid #5761b6;
+    border-radius: 14% 0 0 14%;
+  }
+
+  .schedule-socials:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 62px;
+    height: 62px;
+    background: #0e0f3f;
+    border: 2px solid #5761b6;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    transform: rotate(-45deg) translate(-11px, -11px);
+
+  }
+
+  .schedule-socials ul {
+    position: absolute;
+    top: 50%;
+    right: 28px;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    gap: 4px;
+    z-index: 1;
+    transform: translateY(-50%);
+    list-style: none;
+    color: #fff;
+  }
+
+  .schedule-socials ul li:last-child {
+    margin-left: 10px;
+  }
+
+  .schedule-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    box-shadow: 0 8px 0 1px  #0e0e44;
+  }
+
+  .schedule-icon:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #fff;
+  }
+
+  .schedule-socials__twitter .schedule-icon {
+    background: #5989de;
+  }
+
+  .schedule-socials__youtube .schedule-icon {
+    background: #4557bb;
+  }
+
+  .schedule-socials__twitch .schedule-icon {
+    background: var(--c-yellow);
+  }
+
+  .schedule-socials__twitch .schedule-icon:after {
+    border-color: #1e122a;
+  }
+
+  {% comment %} Schedule Art By {% endcomment %}
+  .schedule_art_by {
+    position: absolute;
+    right: 16px;
+    bottom: 8px;
+  }
+
+  .schedule_art_by-artist {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-5deg) translateY(-30px);
+    font-size: 26px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .schedule_art_by-artist p {
+    margin: 0;
+  }
+
+  .schedule_art_by p span {
+    color: var(--c-yellow);
+  }
+
+  .schedule_art_by-text {
+    position: absolute;
+    transform: rotate(3deg);
+    left: 0;
+    top: 25px;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+    color: var(--c-dark-text);
+  }
+
+  .schedule_art_by-text p {
+    margin: 0;
+  }
+
+  .schedule_art_by-text a {
+    color: var(--c-dark-text);
+    text-decoration: none;
+  }
+
+  .schedule_art_by-text a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+
+<div class="schedule-wrapper">
+  {% if settings.banner %}
+    <div class="schedule__logo">
+      {{ settings.banner | img_url: '600x' | img_tag }}
+    </div><!-- /.schedule__logo -->
+  {% endif %}
+
+  <div class="schedule__title">
+    <p title="{{ settings.current_week }}" class="has-double-stroke">{{ settings.current_week }}</p>
+  </div><!-- /.schedule__title -->
+
+  <div class="schedule-socials">
+    <ul>
+      <li class="schedule-socials__twitter">
+        <a href="{{ settings.twitter }}" target="_blank">
+          <div class="schedule-icon">
+            <img src="https://placehold.co/20x20" />
+          </div><!-- /.schedule-icon -->
+        </a>
+      </li>
+      <li class="schedule-socials__youtube">
+        <a href="{{ settings.youtube }}" target="_blank">
+          <div class="schedule-icon">
+            <img src="https://placehold.co/20x20" />
+          </div><!-- /.schedule-icon -->
+        </a>
+      </li>
+      <li class="schedule-socials__twitch">
+        <a href="{{ settings.twitch }}" target="_blank">
+          <div class="schedule-icon">
+            <img src="https://placehold.co/20x20" />
+          </div><!-- /.schedule-icon -->
+        </a>
+      </li>
+      <li>
+        <strong>{{ settings.name }}</strong>
+      </li>
+    </ul>
+  </div><!-- /.schedule-socials -->
+
+  <div class="schedule_art_by">
+    <img src="https://placehold.co/341x116" />
+    <div class="schedule_art_by-artist">
+      <p title="art by:" class="has-double-stroke">
+        a<span>r</span>t <span>b</span>y<span>:</span>
+      </p>
+    </div><!-- /.schedule_art_by-artist -->
+    <div class="schedule_art_by-text">
+      {{ settings.art_by }}
+    </div><!-- /.schedule_art_by-text -->
+  </div><!-- /.schedule_art_by -->
+
+  <div class="schedule_design_by">
+    {{ settings.designed_by }}
+  </div><!-- /.schedule_design_by -->
+
+</div><!-- /.schedule-wrapper -->
+
+{% schema %}
+{
+  "name": "Schedule",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "current_week",
+      "label": "Current Week"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner",
+      "label": "Banner"
+    },
+    {
+      "type": "url",
+      "id": "twitter",
+      "label": "Twitter"
+    },
+    {
+      "type": "url",
+      "id": "youtube",
+      "label": "Youtube"
+    },
+    {
+      "type": "url",
+      "id": "twitch",
+      "label": "Twtich"
+    },
+    {
+      "type": "text",
+      "id": "name",
+      "label": "Name"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Image"
+    },
+    {
+      "type": "richtext",
+      "id": "art_by",
+      "label": "Art By"
+    },
+    {
+      "type": "range",
+      "id": "art_by_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "richtext",
+      "id": "designed_by",
+      "label": "Designed By"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Schedule"
+    }
+  ]
+}
+{% endschema %}
